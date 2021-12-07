@@ -115,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
         {
             facing = 0;
             moving = true;
+            anim.Play("Walkback");
 
             if (run)
             {
@@ -130,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         {
             facing = 2;
             moving = true;
+            anim.Play("Walkfront");
             
             if (run)
             {
@@ -149,6 +151,8 @@ public class PlayerMovement : MonoBehaviour
         {
             facing = 1;
             moving = true;
+            anim.Play("WalkLeft");
+            transform.localScale=new Vector3(-1,1,1);
 
             if (run)
             {
@@ -164,6 +168,8 @@ public class PlayerMovement : MonoBehaviour
         {
             facing = 3;
             moving = true;
+            anim.Play("WalkLeft");
+            transform.localScale=new Vector3(1,1,1);
             
             if (run)
             {
@@ -180,8 +186,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
          run = Input.GetKey(KeyCode.LeftShift);
-         anim.SetBool("Running", run);
-         anim.SetBool("Moving", moving);
+        if (!attacking)
+        {
+            anim.SetBool("Running", run);
+            anim.SetBool("Moving", moving);
+        }
     }
     
 }
